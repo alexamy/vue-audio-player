@@ -30,4 +30,4 @@ coverage
 *.tsbuildinfo
 
 # mp3
-public/*.mp3
+public/mp3/*.mp3
