@@ -1,3 +1,8 @@
+:root {
+  --light-1: #ffffff;
+  --dark-1: #2f3542;
+}
+
 *,
 *::before,
 *::after {
@@ -7,8 +12,8 @@
 }
 
 body {
-  background-color: #2f3542;
-  color: #ffffff;
+  background-color: var(--dark-1);
+  color: var(--light-1);
   font-family: 'Roboto', sans-serif;
   font-size: 18px;
   text-rendering: optimizeLegibility;
