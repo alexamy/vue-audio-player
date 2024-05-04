@@ -7,6 +7,8 @@ const currentTrack = computed(() => tracks[currentIndex.value])
 const currentURL = computed(() => new URL(currentTrack.value.path, window.location.origin).href)
 
 const progress = ref(0)
+// TODO use computed based on audio element
+const isPlaying = ref(false)
 
 const names = computed(() => tracks.map((track) => track.name))
 const player = ref<HTMLAudioElement | null>(null)
@@ -23,12 +25,15 @@ function load() {
 }
 
 async function play() {
+  isPlaying.value = false
   await load()
   player.value!.play()
+  isPlaying.value = true
 }
 
 function pause() {
   player.value?.pause()
+  isPlaying.value = false
 }
 
 function nextTrack() {
@@ -92,7 +97,7 @@ onUnmounted(() => {
     <audio ref="player" :src="currentTrack.path"></audio>
     <div class="player">
       <div class="cover">
-        <div class="vinyl"></div>
+        <div class="vinyl" :class="{ rotating: isPlaying }"></div>
       </div>
       <div class="sidebar">
         <ul class="tracks">
@@ -140,6 +145,18 @@ onUnmounted(() => {
   height: 100%;
   background: url('brothers1.png');
   mask-image: url('vinyl.png');
+}
+.rotating {
+  animation: rotate 16s linear infinite;
+  transform-origin: center center;
+}
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 .sidebar {
   width: 400px;
