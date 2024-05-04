@@ -24,8 +24,10 @@ const tracks = [
           </div>
         </div>
         <div class="controls">
-          <div class="button">S</div>
-          <div class="button">P</div>
+          <div class="button">⏵</div>
+          <div class="button">⏸</div>
+          <div class="button">⏮</div>
+          <div class="button">⏭</div>
           <div class="seekbar"></div>
         </div>
       </div>
@@ -79,8 +81,11 @@ const tracks = [
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+  user-select: none;
 }
 .seekbar {
   flex-grow: 1;
+  cursor: pointer;
 }
 </style>
