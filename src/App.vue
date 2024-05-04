@@ -4,14 +4,14 @@ import { tracks } from './tracks'
 
 const currentIndex = ref(0)
 const currentTrack = computed(() => tracks[currentIndex.value])
+const currentURL = computed(() => new URL(currentTrack.value.path, window.location.origin).href)
 
 const names = computed(() => tracks.map((track) => track.name))
 const player = ref<HTMLAudioElement | null>(null)
 
 function load() {
   return new Promise<void>((resolve) => {
-    const { href } = new URL(currentTrack.value.path, window.location.origin)
-    const isLoaded = player.value!.src === href
+    const isLoaded = player.value!.src === currentURL.value
     if (isLoaded) return resolve()
 
     player.value!.src = currentTrack.value.path
