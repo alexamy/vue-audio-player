@@ -18,11 +18,11 @@ const tracks = [
     <div class="player">
       <div class="cover"></div>
       <div class="right">
-        <div class="tracks">
-          <div class="track" v-for="track in tracks" :key="track">
+        <ul class="tracks">
+          <li class="track" v-for="track in tracks" :key="track">
             {{ track }}
-          </div>
-        </div>
+          </li>
+        </ul>
         <div class="controls">
           <button class="button">⏵</button>
           <button class="button">⏸</button>
@@ -66,6 +66,9 @@ const tracks = [
   overflow-x: hidden;
   overflow-y: overlay;
   scrollbar-color: var(--orange) transparent;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 .track {
   user-select: none;
