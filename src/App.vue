@@ -3,6 +3,18 @@ import { computed } from 'vue'
 import { tracks } from './files'
 
 const names = computed(() => tracks.map((track) => track.name))
+
+/* TODO
+ * Play/Pause
+ * Next/Previous
+ * Seek track on seekbar click
+ * Play track on double click
+ * Play next track automatically after track ends
+ * Cover animation
+ * Volume bar
+ * Shuffle tracks
+ * Repeat track / playlist
+ */
 </script>
 
 <template>
