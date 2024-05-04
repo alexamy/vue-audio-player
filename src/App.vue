@@ -60,10 +60,12 @@ function setProgress() {
 
 onMounted(() => {
   player.value!.addEventListener('timeupdate', setProgress)
+  player.value!.addEventListener('ended', nextTrack)
 })
 
 onUnmounted(() => {
   player.value!.removeEventListener('timeupdate', setProgress)
+  player.value!.removeEventListener('ended', nextTrack)
 })
 
 /* TODO
@@ -72,13 +74,14 @@ onUnmounted(() => {
  x Add progress visualisation
  x Seek track on seekbar click
  x Play track on double click
- * Play next track automatically after track ends
+ x Play next track automatically after track ends
  * Add loading spinner when track is loading
  * Cover animation
  * Volume bar
  * Shuffle tracks
  * Repeat track / playlist
- * Play first track when no track is selected
+ * Dont select track on page load
+ * Play first track when no track is selected on play click
  * Scroll to selected track (when switching from first to last)
  * Missing track indicator
  */
