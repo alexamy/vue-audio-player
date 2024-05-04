@@ -60,11 +60,9 @@ const tracks = [
 .tracks {
   display: flex;
   flex-direction: column;
-  gap: 3px;
   flex-grow: 1;
   border: 1px solid var(--orange);
   border-left: 0;
-  padding: 4px 10px 4px;
   overflow-x: hidden;
   overflow-y: overlay;
   scrollbar-color: var(--orange) transparent;
@@ -72,7 +70,15 @@ const tracks = [
 .track {
   user-select: none;
   cursor: pointer;
-  background-color: var(--dark-2);
+  background-color: var(--dark-1);
+  padding-bottom: 4px;
+  padding-left: 10px;
+}
+.track:hover {
+  background-color: var(--orange);
+}
+.track:first-child {
+  padding-top: 4px;
 }
 .controls {
   display: flex;
@@ -81,14 +87,18 @@ const tracks = [
   border-left: 0;
 }
 .button {
-  border-right: 1px solid var(--orange);
   width: 25px;
   height: 25px;
   display: flex;
   align-items: center;
   justify-content: center;
+  border-right: 1px solid var(--orange);
+  line-height: 1.5;
   cursor: pointer;
   user-select: none;
+}
+.button:hover {
+  background-color: var(--orange);
 }
 .seekbar {
   flex-grow: 1;
