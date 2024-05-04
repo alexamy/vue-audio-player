@@ -65,10 +65,16 @@ const tracks = [
   border-left: 0;
   overflow-x: hidden;
   overflow-y: overlay;
-  scrollbar-color: var(--orange) transparent;
   list-style: none;
   padding: 0;
   margin: 0;
+}
+.tracks::-webkit-scrollbar {
+  width: 10px;
+  background-color: transparent;
+}
+.tracks::-webkit-scrollbar-thumb {
+  background-color: var(--orange);
 }
 .track {
   user-select: none;
