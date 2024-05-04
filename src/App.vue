@@ -58,10 +58,13 @@ const tracks = [
   flex-direction: column;
 }
 .tracks {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
   flex-grow: 1;
   border: 1px solid var(--orange);
   border-left: 0;
-  padding-left: 10px;
+  padding: 4px 10px 4px;
   overflow-x: hidden;
 }
 .track {
