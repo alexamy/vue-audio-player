@@ -1,18 +1,26 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const tracks = [
+  'Track 1',
+  'Track 2',
+  'Track 3',
+  'Track 4',
+  'Track 5',
+  'Track 6',
+  'Track 7',
+  'Track 8',
+  'Track 9',
+  'Track 10'
+]
+</script>
 
 <template>
   <div class="player">
     <div class="cover"></div>
     <div class="right">
       <div class="tracks">
-        <div class="track">Track 1</div>
-        <div class="track">Track 2</div>
-        <div class="track">Track 1</div>
-        <div class="track">Track 2</div>
-        <div class="track">Track 1</div>
-        <div class="track">Track 2</div>
-        <div class="track">Track 1</div>
-        <div class="track">Track 2</div>
+        <div class="track" v-for="track in tracks" :key="track">
+          {{ track }}
+        </div>
       </div>
       <div class="controls">
         <div class="button">S</div>
