@@ -11,6 +11,7 @@ const player = ref<HTMLAudioElement | null>(null)
 
 function load() {
   return new Promise<void>((resolve) => {
+    // TODO make prettier
     const isLoaded = player.value!.src === currentURL.value
     if (isLoaded) return resolve()
 
