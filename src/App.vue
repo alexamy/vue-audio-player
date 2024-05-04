@@ -66,10 +66,13 @@ const tracks = [
   border-left: 0;
   padding: 4px 10px 4px;
   overflow-x: hidden;
+  overflow-y: overlay;
+  scrollbar-color: var(--orange) transparent;
 }
 .track {
   user-select: none;
   cursor: pointer;
+  background-color: var(--dark-2);
 }
 .controls {
   display: flex;
