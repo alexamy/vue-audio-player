@@ -1,10 +1,13 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, onMounted, onUnmounted, ref } from 'vue'
 import { tracks } from './tracks'
+import { on } from 'events'
 
 const currentIndex = ref(0)
 const currentTrack = computed(() => tracks[currentIndex.value])
 const currentURL = computed(() => new URL(currentTrack.value.path, window.location.origin).href)
+
+const progress = ref(0)
 
 const names = computed(() => tracks.map((track) => track.name))
 const player = ref<HTMLAudioElement | null>(null)
@@ -39,10 +42,23 @@ function prevTrack() {
   play()
 }
 
+function setProgress() {
+  const amount = (player.value!.currentTime / player.value!.duration) * 100
+  progress.value = amount
+}
+
+onMounted(() => {
+  player.value!.addEventListener('timeupdate', setProgress)
+})
+
+onUnmounted(() => {
+  player.value!.removeEventListener('timeupdate', setProgress)
+})
+
 /* TODO
  x Play/Pause
  x Next/Previous
- * Add progress visualisation
+ x Add progress visualisation
  * Seek track on seekbar click
  * Play track on double click
  * Play next track automatically after track ends
@@ -78,7 +94,7 @@ function prevTrack() {
           <button class="button" @click="pause">⏸</button>
           <button class="button" @click="prevTrack">⏮</button>
           <button class="button" @click="nextTrack">⏭</button>
-          <progress class="seekbar" max="100" value="50"></progress>
+          <progress class="seekbar" max="100" :value="progress"></progress>
         </div>
       </div>
     </div>
