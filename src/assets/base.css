@@ -1,6 +1,9 @@
 :root {
   --light-1: #ffffff;
   --dark-1: #2f3542;
+  --yellow: #eccc68;
+  --orange: #ffa502;
+  --coral: #ff7f50;
 }
 
 *,
@@ -15,7 +18,7 @@ body {
   background-color: var(--dark-1);
   color: var(--light-1);
   font-family: 'Roboto', sans-serif;
-  font-size: 18px;
+  font-size: 16px;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
