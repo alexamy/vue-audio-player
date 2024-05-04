@@ -12,6 +12,7 @@ const isRepeatOne = ref(false)
 
 const names = computed(() => tracks.map((track) => track.name))
 const player = ref<HTMLAudioElement | null>(null)
+const trackRefs = ref<HTMLElement[]>([])
 
 function load() {
   return new Promise<void>((resolve) => {
@@ -49,12 +50,14 @@ function playAgain() {
 function nextTrack() {
   isLoaded.value = false
   currentIndex.value = (currentIndex.value + 1) % tracks.length
+  trackRefs.value[currentIndex.value].scrollIntoView({ block: 'center' })
   play()
 }
 
 function prevTrack() {
   isLoaded.value = false
   currentIndex.value = (currentIndex.value - 1 + tracks.length) % tracks.length
+  trackRefs.value[currentIndex.value].scrollIntoView({ block: 'center' })
   play()
 }
 
@@ -115,7 +118,7 @@ onUnmounted(() => {
  * Volume bar
  * Missing track indicator
  * Add loading spinner when track is loading
- * Scroll to selected track (when switching from first to last)
+ x Scroll to selected track (when switching from first to last)
  */
 </script>
 
@@ -129,6 +132,7 @@ onUnmounted(() => {
       <div class="sidebar">
         <ul class="tracks">
           <li
+            ref="trackRefs"
             v-for="(name, index) in names"
             :key="index"
             class="track"
