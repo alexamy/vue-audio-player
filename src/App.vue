@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { tracks } from './files'
+import { tracks } from './tracks'
 
 const currentIndex = ref(0)
 const currentTrack = computed(() => tracks[currentIndex.value])
