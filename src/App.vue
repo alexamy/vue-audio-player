@@ -41,6 +41,11 @@ function prevTrack() {
   play()
 }
 
+function selectTrack(index: number) {
+  currentIndex.value = index
+  play()
+}
+
 function seek(event: MouseEvent) {
   const rect = (event.target as HTMLElement).getBoundingClientRect()
   const x = event.clientX - rect.left
@@ -66,7 +71,7 @@ onUnmounted(() => {
  x Next/Previous
  x Add progress visualisation
  x Seek track on seekbar click
- * Play track on double click
+ x Play track on double click
  * Play next track automatically after track ends
  * Add loading spinner when track is loading
  * Cover animation
@@ -91,6 +96,7 @@ onUnmounted(() => {
             :key="index"
             class="track"
             :class="{ selected: currentIndex === index }"
+            @dblclick="selectTrack(index)"
           >
             {{ name }}
           </li>
