@@ -110,15 +110,16 @@ onUnmounted(() => {
  x Cover animation
  x Repeat one track
  x Add button tooltips
+ x Scroll to selected track (when switching from first to last)
  * Merge play and pause into one button
  * Dont select track on page load
  * Play first track when no track is selected on play click
  *
+ * Save / restore state on page reload
  * Shuffle tracks
  * Volume bar
  * Missing track indicator
  * Add loading spinner when track is loading
- x Scroll to selected track (when switching from first to last)
  */
 </script>
 
