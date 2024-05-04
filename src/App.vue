@@ -11,7 +11,7 @@ const names = computed(() => tracks.map((track) => track.name))
       <div class="cover"></div>
       <div class="sidebar">
         <ul class="tracks">
-          <li class="track" v-for="name in names" :key="name">
+          <li class="track" v-for="(name, index) in names" :key="index">
             {{ name }}
           </li>
         </ul>
