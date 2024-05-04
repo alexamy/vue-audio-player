@@ -17,7 +17,7 @@ const tracks = [
   <div class="center">
     <div class="player">
       <div class="cover"></div>
-      <div class="right">
+      <div class="sidebar">
         <ul class="tracks">
           <li class="track" v-for="track in tracks" :key="track">
             {{ track }}
@@ -52,7 +52,7 @@ const tracks = [
   height: 160px;
   border: 1px solid var(--orange);
 }
-.right {
+.sidebar {
   width: 400px;
   display: flex;
   flex-direction: column;
