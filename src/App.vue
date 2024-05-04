@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref } from 'vue'
 import { tracks } from './tracks'
-import { on } from 'events'
 
 const currentIndex = ref(0)
 const currentTrack = computed(() => tracks[currentIndex.value])
@@ -42,9 +41,16 @@ function prevTrack() {
   play()
 }
 
+function seek(event: MouseEvent) {
+  const rect = (event.target as HTMLElement).getBoundingClientRect()
+  const x = event.clientX - rect.left
+  const amount = x / rect.width
+  player.value!.currentTime = player.value!.duration * amount
+}
+
 function setProgress() {
   const amount = (player.value!.currentTime / player.value!.duration) * 100
-  progress.value = amount
+  progress.value = isNaN(amount) ? 0 : amount
 }
 
 onMounted(() => {
@@ -59,7 +65,7 @@ onUnmounted(() => {
  x Play/Pause
  x Next/Previous
  x Add progress visualisation
- * Seek track on seekbar click
+ x Seek track on seekbar click
  * Play track on double click
  * Play next track automatically after track ends
  * Add loading spinner when track is loading
@@ -94,7 +100,7 @@ onUnmounted(() => {
           <button class="button" @click="pause">⏸</button>
           <button class="button" @click="prevTrack">⏮</button>
           <button class="button" @click="nextTrack">⏭</button>
-          <progress class="seekbar" max="100" :value="progress"></progress>
+          <progress class="seekbar" max="100" :value="progress" @click="seek"></progress>
         </div>
       </div>
     </div>
