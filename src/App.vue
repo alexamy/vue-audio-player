@@ -91,7 +91,9 @@ onUnmounted(() => {
   <div class="center">
     <audio ref="player" :src="currentTrack.path"></audio>
     <div class="player">
-      <div class="cover"></div>
+      <div class="cover">
+        <div class="vinyl"></div>
+      </div>
       <div class="sidebar">
         <ul class="tracks">
           <li
@@ -132,6 +134,12 @@ onUnmounted(() => {
   width: 160px;
   height: 160px;
   border: 1px solid var(--orange);
+}
+.vinyl {
+  width: 100%;
+  height: 100%;
+  background: url('brothers1.png');
+  mask-image: url('vinyl.png');
 }
 .sidebar {
   width: 400px;
