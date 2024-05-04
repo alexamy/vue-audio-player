@@ -1,5 +1,5 @@
 :root {
-  --light-1: #ffffff;
+  --white: #ffffff;
   --dark-1: #2f3542;
   --dark-2: #57606f;
   --yellow: #eccc68;
@@ -17,7 +17,7 @@
 
 body {
   background-color: var(--dark-1);
-  color: var(--light-1);
+  color: var(--white);
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
   text-rendering: optimizeLegibility;

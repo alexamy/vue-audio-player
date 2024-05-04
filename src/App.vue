@@ -93,7 +93,7 @@ const tracks = [
   border: none;
   border-right: 1px solid var(--orange);
   background-color: transparent;
-  color: var(--light-1);
+  color: var(--white);
   line-height: 1.5;
   cursor: pointer;
   user-select: none;
