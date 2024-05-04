@@ -14,24 +14,33 @@ const tracks = [
 </script>
 
 <template>
-  <div class="player">
-    <div class="cover"></div>
-    <div class="right">
-      <div class="tracks">
-        <div class="track" v-for="track in tracks" :key="track">
-          {{ track }}
+  <div class="center">
+    <div class="player">
+      <div class="cover"></div>
+      <div class="right">
+        <div class="tracks">
+          <div class="track" v-for="track in tracks" :key="track">
+            {{ track }}
+          </div>
         </div>
-      </div>
-      <div class="controls">
-        <div class="button">S</div>
-        <div class="button">P</div>
-        <div class="seekbar"></div>
+        <div class="controls">
+          <div class="button">S</div>
+          <div class="button">P</div>
+          <div class="seekbar"></div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <style scoped>
+.center {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding-top: 40px;
+}
 .player {
   display: flex;
   height: 160px;
