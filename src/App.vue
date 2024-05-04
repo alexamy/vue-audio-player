@@ -90,6 +90,7 @@ const tracks = [
   display: flex;
   align-items: center;
   justify-content: center;
+  outline: 0;
   border: none;
   border-right: 1px solid var(--orange);
   background-color: transparent;
@@ -100,6 +101,10 @@ const tracks = [
 }
 .button:hover {
   background-color: var(--orange);
+}
+.button:active,
+.button:focus {
+  outline: 0;
 }
 .seekbar {
   flex-grow: 1;
