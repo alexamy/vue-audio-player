@@ -24,10 +24,10 @@ const tracks = [
           </div>
         </div>
         <div class="controls">
-          <div class="button">⏵</div>
-          <div class="button">⏸</div>
-          <div class="button">⏮</div>
-          <div class="button">⏭</div>
+          <button class="button">⏵</button>
+          <button class="button">⏸</button>
+          <button class="button">⏮</button>
+          <button class="button">⏭</button>
           <div class="seekbar"></div>
         </div>
       </div>
@@ -90,7 +90,10 @@ const tracks = [
   display: flex;
   align-items: center;
   justify-content: center;
+  border: none;
   border-right: 1px solid var(--orange);
+  background-color: transparent;
+  color: var(--light-1);
   line-height: 1.5;
   cursor: pointer;
   user-select: none;
