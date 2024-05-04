@@ -100,7 +100,8 @@ onUnmounted(() => {
  x Play next track automatically after track ends
  x Cover animation
  x Repeat one track
- * Add button tooltips
+ x Add button tooltips
+ * Merge play and pause into one button
  * Dont select track on page load
  * Play first track when no track is selected on play click
  *
@@ -137,7 +138,12 @@ onUnmounted(() => {
           <button class="button left" @click="prevTrack">⏮</button>
           <button class="button left" @click="nextTrack">⏭</button>
           <progress class="seekbar" max="100" :value="progress" @click="seek"></progress>
-          <button class="button right" :class="{ toggled: isRepeatOne }" @click="repeatOne">
+          <button
+            class="button right"
+            :class="{ toggled: isRepeatOne }"
+            title="Repeat current track"
+            @click="repeatOne"
+          >
             1
           </button>
         </div>
