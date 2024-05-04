@@ -4,19 +4,24 @@ import { tracks } from './tracks'
 
 const currentIndex = ref(0)
 const currentTrack = computed(() => tracks[currentIndex.value])
-const names = computed(() => tracks.map((track) => track.name))
 
+const names = computed(() => tracks.map((track) => track.name))
 const player = ref<HTMLAudioElement | null>(null)
 
-function play() {
-  player.value!.src = currentTrack.value.path
-  player.value!.addEventListener(
-    'canplay',
-    () => {
-      player.value!.play()
-    },
-    { once: true }
-  )
+function load() {
+  return new Promise<void>((resolve) => {
+    const { href } = new URL(currentTrack.value.path, window.location.origin)
+    const isLoaded = player.value!.src === href
+    if (isLoaded) return resolve()
+
+    player.value!.src = currentTrack.value.path
+    player.value!.addEventListener('canplay', () => resolve(), { once: true })
+  })
+}
+
+async function play() {
+  await load()
+  player.value!.play()
 }
 
 function pause() {
@@ -47,6 +52,7 @@ function prevTrack() {
  * Repeat track / playlist
  * Play first track when no track is selected
  * Scroll to selected track (when switching from first to last)
+ * Missing track indicator
  */
 </script>
 
