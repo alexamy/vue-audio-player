@@ -36,6 +36,7 @@ function prevTrack() {
 /* TODO
  x Play/Pause
  x Next/Previous
+ * Add progress visualisation
  * Seek track on seekbar click
  * Play track on double click
  * Play next track automatically after track ends
