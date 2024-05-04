@@ -1,37 +1,75 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { tracks } from './files'
 
+const currentIndex = ref(0)
+const currentTrack = computed(() => tracks[currentIndex.value])
 const names = computed(() => tracks.map((track) => track.name))
 
+const player = ref<HTMLAudioElement | null>(null)
+
+function play() {
+  player.value!.src = currentTrack.value.path
+  player.value!.addEventListener(
+    'canplay',
+    () => {
+      player.value!.play()
+    },
+    { once: true }
+  )
+}
+
+function pause() {
+  player.value?.pause()
+}
+
+function nextTrack() {
+  currentIndex.value = (currentIndex.value + 1) % tracks.length
+  play()
+}
+
+function prevTrack() {
+  currentIndex.value = (currentIndex.value - 1 + tracks.length) % tracks.length
+  play()
+}
+
 /* TODO
- * Play/Pause
- * Next/Previous
+ x Play/Pause
+ x Next/Previous
  * Seek track on seekbar click
  * Play track on double click
  * Play next track automatically after track ends
+ * Add loading spinner when track is loading
  * Cover animation
  * Volume bar
  * Shuffle tracks
  * Repeat track / playlist
+ * Play first track when no track is selected
+ * Scroll to selected track (when switching from first to last)
  */
 </script>
 
 <template>
   <div class="center">
+    <audio ref="player" :src="currentTrack.path"></audio>
     <div class="player">
       <div class="cover"></div>
       <div class="sidebar">
         <ul class="tracks">
-          <li class="track" v-for="(name, index) in names" :key="index">
+          <li
+            v-for="(name, index) in names"
+            :key="index"
+            class="track"
+            :class="{ selected: currentIndex === index }"
+          >
             {{ name }}
           </li>
         </ul>
         <div class="controls">
-          <button class="button">⏵</button>
-          <button class="button">⏸</button>
-          <button class="button">⏮</button>
-          <button class="button">⏭</button>
+          <button class="button" @click="play">⏵</button>
+          <button class="button" @click="pause">⏸</button>
+          <button class="button" @click="prevTrack">⏮</button>
+          <button class="button" @click="nextTrack">⏭</button>
           <progress class="seekbar" max="100" value="50"></progress>
         </div>
       </div>
@@ -88,7 +126,8 @@ const names = computed(() => tracks.map((track) => track.name))
   padding: 4px;
   padding-right: 0;
 }
-.track:hover {
+.track:hover,
+.track.selected {
   background-color: var(--orange);
 }
 .controls {
