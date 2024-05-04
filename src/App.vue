@@ -9,6 +9,7 @@ const currentURL = computed(() => new URL(currentTrack.value.path, window.locati
 const progress = ref(0)
 // TODO use computed based on audio element
 const isPlaying = ref(false)
+const isRepeatOne = ref(false)
 
 const names = computed(() => tracks.map((track) => track.name))
 const player = ref<HTMLAudioElement | null>(null)
@@ -36,6 +37,11 @@ function pause() {
   isPlaying.value = false
 }
 
+function playAgain() {
+  player.value!.currentTime = 0
+  play()
+}
+
 function nextTrack() {
   currentIndex.value = (currentIndex.value + 1) % tracks.length
   play()
@@ -44,6 +50,14 @@ function nextTrack() {
 function prevTrack() {
   currentIndex.value = (currentIndex.value - 1 + tracks.length) % tracks.length
   play()
+}
+
+function onTrackEnd() {
+  if (isRepeatOne.value) {
+    playAgain()
+  } else {
+    nextTrack()
+  }
 }
 
 function selectTrack(index: number) {
@@ -63,14 +77,18 @@ function setProgress() {
   progress.value = isNaN(amount) ? 0 : amount
 }
 
+function repeatOne() {
+  isRepeatOne.value = !isRepeatOne.value
+}
+
 onMounted(() => {
   player.value!.addEventListener('timeupdate', setProgress)
-  player.value!.addEventListener('ended', nextTrack)
+  player.value!.addEventListener('ended', onTrackEnd)
 })
 
 onUnmounted(() => {
   player.value!.removeEventListener('timeupdate', setProgress)
-  player.value!.removeEventListener('ended', nextTrack)
+  player.value!.removeEventListener('ended', onTrackEnd)
 })
 
 /* TODO
@@ -81,7 +99,8 @@ onUnmounted(() => {
  x Play track on double click
  x Play next track automatically after track ends
  x Cover animation
- * Repeat one track
+ x Repeat one track
+ * Add button tooltips
  * Dont select track on page load
  * Play first track when no track is selected on play click
  *
@@ -113,11 +132,14 @@ onUnmounted(() => {
           </li>
         </ul>
         <div class="controls">
-          <button class="button" @click="play">⏵</button>
-          <button class="button" @click="pause">⏸</button>
-          <button class="button" @click="prevTrack">⏮</button>
-          <button class="button" @click="nextTrack">⏭</button>
+          <button class="button left" @click="play">⏵</button>
+          <button class="button left" @click="pause">⏸</button>
+          <button class="button left" @click="prevTrack">⏮</button>
+          <button class="button left" @click="nextTrack">⏭</button>
           <progress class="seekbar" max="100" :value="progress" @click="seek"></progress>
+          <button class="button right" :class="{ toggled: isRepeatOne }" @click="repeatOne">
+            1
+          </button>
         </div>
       </div>
     </div>
@@ -213,14 +235,21 @@ onUnmounted(() => {
   justify-content: center;
   outline: 0;
   border: none;
-  border-right: 1px solid var(--orange);
+  border: 0 solid var(--orange);
   background-color: transparent;
   color: var(--white);
   line-height: 1.5;
   cursor: pointer;
   user-select: none;
 }
-.button:hover {
+.button.left {
+  border-right-width: 1px;
+}
+.button.right {
+  border-left-width: 1px;
+}
+.button:hover,
+.button.toggled {
   background-color: var(--orange);
 }
 .button:active,
