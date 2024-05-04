@@ -72,7 +72,7 @@ function seek(event: MouseEvent) {
   player.value!.currentTime = player.value!.duration * amount
 }
 
-function setProgress() {
+function onProgressUpdate() {
   const amount = (player.value!.currentTime / player.value!.duration) * 100
   progress.value = isNaN(amount) ? 0 : amount
 }
@@ -82,12 +82,12 @@ function repeatOne() {
 }
 
 onMounted(() => {
-  player.value!.addEventListener('timeupdate', setProgress)
+  player.value!.addEventListener('timeupdate', onProgressUpdate)
   player.value!.addEventListener('ended', onTrackEnd)
 })
 
 onUnmounted(() => {
-  player.value!.removeEventListener('timeupdate', setProgress)
+  player.value!.removeEventListener('timeupdate', onProgressUpdate)
   player.value!.removeEventListener('ended', onTrackEnd)
 })
 
