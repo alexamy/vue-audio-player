@@ -1,16 +1,8 @@
 <script setup lang="ts">
-const tracks = [
-  'Track 1',
-  'Track 2',
-  'Track 3',
-  'Track 4',
-  'Track 5',
-  'Track 6',
-  'Track 7',
-  'Track 8',
-  'Track 9',
-  'Track 10'
-]
+import { computed } from 'vue'
+import { tracks } from './files'
+
+const names = computed(() => tracks.map((track) => track.name))
 </script>
 
 <template>
@@ -19,8 +11,8 @@ const tracks = [
       <div class="cover"></div>
       <div class="sidebar">
         <ul class="tracks">
-          <li class="track" v-for="track in tracks" :key="track">
-            {{ track }}
+          <li class="track" v-for="name in names" :key="name">
+            {{ name }}
           </li>
         </ul>
         <div class="controls">
