@@ -28,7 +28,7 @@ const tracks = [
           <button class="button">⏸</button>
           <button class="button">⏮</button>
           <button class="button">⏭</button>
-          <div class="seekbar"></div>
+          <progress class="seekbar" max="100" value="50"></progress>
         </div>
       </div>
     </div>
@@ -110,7 +110,15 @@ const tracks = [
   outline: 0;
 }
 .seekbar {
+  appearance: none;
+  height: 100%;
   flex-grow: 1;
   cursor: pointer;
+}
+.seekbar[value]::-webkit-progress-bar {
+  background-color: transparent;
+}
+.seekbar[value]::-webkit-progress-value {
+  background-color: var(--orange);
 }
 </style>
