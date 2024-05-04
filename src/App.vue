@@ -4,10 +4,9 @@ import { tracks } from './tracks'
 
 const currentIndex = ref(0)
 const currentTrack = computed(() => tracks[currentIndex.value])
-const currentURL = computed(() => new URL(currentTrack.value.path, window.location.origin).href)
-
 const progress = ref(0)
-// TODO use computed based on audio element
+
+const isLoaded = ref(false)
 const isPlaying = ref(false)
 const isRepeatOne = ref(false)
 
@@ -16,12 +15,17 @@ const player = ref<HTMLAudioElement | null>(null)
 
 function load() {
   return new Promise<void>((resolve) => {
-    // TODO make prettier
-    const isLoaded = player.value!.src === currentURL.value
-    if (isLoaded) return resolve()
-
+    if (isLoaded.value) return resolve()
+    isLoaded.value = false
     player.value!.src = currentTrack.value.path
-    player.value!.addEventListener('canplay', () => resolve(), { once: true })
+    player.value!.addEventListener(
+      'canplay',
+      () => {
+        isLoaded.value = true
+        resolve()
+      },
+      { once: true }
+    )
   })
 }
 
@@ -43,11 +47,13 @@ function playAgain() {
 }
 
 function nextTrack() {
+  isLoaded.value = false
   currentIndex.value = (currentIndex.value + 1) % tracks.length
   play()
 }
 
 function prevTrack() {
+  isLoaded.value = false
   currentIndex.value = (currentIndex.value - 1 + tracks.length) % tracks.length
   play()
 }
