@@ -71,14 +71,12 @@ const tracks = [
   user-select: none;
   cursor: pointer;
   background-color: var(--dark-1);
-  padding-bottom: 4px;
-  padding-left: 10px;
+  padding: 0 0 0;
+  padding: 4px;
+  padding-right: 0;
 }
 .track:hover {
   background-color: var(--orange);
-}
-.track:first-child {
-  padding-top: 4px;
 }
 .controls {
   display: flex;
