@@ -80,15 +80,16 @@ onUnmounted(() => {
  x Seek track on seekbar click
  x Play track on double click
  x Play next track automatically after track ends
- * Add loading spinner when track is loading
- * Cover animation
- * Volume bar
- * Shuffle tracks
- * Repeat track / playlist
+ x Cover animation
+ * Repeat one track
  * Dont select track on page load
  * Play first track when no track is selected on play click
- * Scroll to selected track (when switching from first to last)
+ *
+ * Shuffle tracks
+ * Volume bar
  * Missing track indicator
+ * Add loading spinner when track is loading
+ * Scroll to selected track (when switching from first to last)
  */
 </script>
 
@@ -136,19 +137,23 @@ onUnmounted(() => {
   height: 160px;
 }
 .cover {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 160px;
   height: 160px;
   border: 1px solid var(--orange);
 }
 .vinyl {
-  width: 100%;
-  height: 100%;
-  background: url('brothers1.png');
+  width: 144px;
+  height: 144px;
+  background: url('brothers1.png') no-repeat;
   mask-image: url('vinyl.png');
+  animation: rotate 16s linear infinite;
+  animation-play-state: paused;
 }
 .rotating {
-  animation: rotate 16s linear infinite;
-  transform-origin: center center;
+  animation-play-state: running;
 }
 @keyframes rotate {
   from {
