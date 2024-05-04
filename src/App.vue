@@ -129,7 +129,7 @@ onUnmounted(() => {
             :class="{ selected: currentIndex === index }"
             @dblclick="selectTrack(index)"
           >
-            {{ name }}
+            {{ index + 1 }}. {{ name }}
           </li>
         </ul>
         <div class="controls">
