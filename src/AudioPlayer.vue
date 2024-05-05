@@ -25,11 +25,13 @@ const currentTrackRef = computed(() => trackRefs.value[currentIndex.value])
 watch(currentTrack, () => {
   isLoaded.value = false
   isPlaying.value = false
+
   player.value!.src = currentTrack.value.path
   player.value!.addEventListener(
     'canplay',
     () => {
       isLoaded.value = true
+      play()
     },
     { once: true }
   )
