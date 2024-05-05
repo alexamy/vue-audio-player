@@ -153,10 +153,18 @@ onUnmounted(() => {
           </li>
         </ul>
         <div class="controls">
-          <button class="button left" @click="play">⏵</button>
-          <button class="button left" @click="pause">⏸</button>
-          <button class="button left" @click="prevTrack">⏮</button>
-          <button class="button left" @click="nextTrack">⏭</button>
+          <button class="button left" @click="play">
+            <v-icon scale="0.7" name="io-play-sharp"></v-icon>
+          </button>
+          <button class="button left" @click="pause">
+            <v-icon scale="0.7" name="io-pause-sharp"></v-icon>
+          </button>
+          <button class="button left" @click="prevTrack">
+            <v-icon scale="0.7" name="io-play-back-sharp"></v-icon>
+          </button>
+          <button class="button left" @click="nextTrack">
+            <v-icon scale="0.7" name="io-play-forward-sharp"></v-icon>
+          </button>
           <progress class="seekbar" max="100" :value="progress" @click="seek"></progress>
           <button
             class="button right"
@@ -164,7 +172,7 @@ onUnmounted(() => {
             title="Repeat current track"
             @click="repeatOne"
           >
-            1
+            <v-icon name="md-repeatone-sharp"></v-icon>
           </button>
         </div>
       </div>
