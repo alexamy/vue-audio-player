@@ -204,8 +204,8 @@ onUnmounted(() => {
 .vinyl {
   width: 144px;
   height: 144px;
-  background: url('brothers1.png') no-repeat;
-  mask-image: url('vinyl.png');
+  background: url('/brothers1.png') no-repeat;
+  mask-image: url('/vinyl.png');
   animation: rotate 16s linear infinite;
   animation-play-state: paused;
 }
