@@ -1,4 +1,4 @@
-# vue-audio-library
+# vue-audio-player
 
 Dev: `yarn dev`
 
