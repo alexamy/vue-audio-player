@@ -31,3 +31,4 @@ coverage
 
 # mp3
 public/mp3/*.mp3
+public/tracks.json
