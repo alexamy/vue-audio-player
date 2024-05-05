@@ -114,9 +114,9 @@ onUnmounted(() => {
  x Repeat one track
  x Add button tooltips
  x Scroll to selected track (when switching from first to last)
- * Use async JSON for tracks
+ x Use async JSON for tracks
  * Add mobile version
- * Add svg icons
+ * Add svg icons for controls
  * Extract headless player
  *
  * Merge play and pause into one button
