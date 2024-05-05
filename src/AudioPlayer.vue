@@ -147,7 +147,7 @@ onUnmounted(() => {
             :key="index"
             class="track"
             :class="{ selected: currentIndex === index }"
-            @dblclick="selectTrack(index)"
+            @click="selectTrack(index)"
           >
             {{ index + 1 }}. {{ name }}
           </li>
