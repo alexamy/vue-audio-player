@@ -243,7 +243,11 @@ onUnmounted(() => {
   padding: 4px;
   padding-right: 0;
 }
-.track:hover,
+@media (hover: hover) {
+  .track:hover {
+    background-color: var(--dark-2);
+  }
+}
 .track.selected {
   background-color: var(--orange);
 }
@@ -274,7 +278,11 @@ onUnmounted(() => {
 .button.right {
   border-left-width: 1px;
 }
-.button:hover,
+@media (hover: hover) {
+  .button:hover {
+    background-color: var(--dark-2);
+  }
+}
 .button.toggled {
   background-color: var(--orange);
 }
