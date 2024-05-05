@@ -212,7 +212,7 @@ onUnmounted(() => {
   }
 }
 .sidebar {
-  width: 400px;
+  min-width: 400px;
   display: flex;
   flex-direction: column;
 }
@@ -221,7 +221,7 @@ onUnmounted(() => {
   flex-direction: column;
   flex-grow: 1;
   border: 1px solid var(--orange);
-  border-left: 0;
+  border-left-width: 0;
   overflow-x: hidden;
   overflow-y: overlay;
   list-style: none;
@@ -254,8 +254,8 @@ onUnmounted(() => {
 .controls {
   display: flex;
   border: 1px solid var(--orange);
-  border-top: 0;
-  border-left: 0;
+  border-top-width: 0;
+  border-left-width: 0;
 }
 .button {
   width: 25px;
@@ -301,5 +301,24 @@ onUnmounted(() => {
 }
 .seekbar[value]::-webkit-progress-value {
   background-color: var(--orange);
+}
+
+@media only screen and (max-width: 768px) {
+  .center {
+    display: block;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .cover {
+    display: none;
+  }
+  .sidebar {
+    min-width: 100px;
+    width: 100%;
+  }
+  .tracks,
+  .controls {
+    border-left-width: 1px;
+  }
 }
 </style>
