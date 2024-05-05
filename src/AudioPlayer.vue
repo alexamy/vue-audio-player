@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted, onUnmounted, ref } from 'vue'
+import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 
 interface Track {
   name: string
@@ -9,36 +9,33 @@ interface Track {
 const tracks: Track[] = await fetch('tracks.json').then((res) => res.json())
 
 const currentIndex = ref(0)
-const currentTrack = computed(() => tracks[currentIndex.value])
 const progress = ref(0)
 
 const isLoaded = ref(false)
 const isPlaying = ref(false)
 const isRepeatOne = ref(false)
 
-const names = computed(() => tracks.map((track) => track.name))
 const player = ref<HTMLAudioElement | null>(null)
 const trackRefs = ref<HTMLElement[]>([])
 
-function load() {
-  return new Promise<void>((resolve) => {
-    if (isLoaded.value) return resolve()
-    isLoaded.value = false
-    player.value!.src = currentTrack.value.path
-    player.value!.addEventListener(
-      'canplay',
-      () => {
-        isLoaded.value = true
-        resolve()
-      },
-      { once: true }
-    )
-  })
-}
+const names = computed(() => tracks.map((track) => track.name))
+const currentTrack = computed(() => tracks[currentIndex.value])
+const currentTrackRef = computed(() => trackRefs.value[currentIndex.value])
+
+watch(currentTrack, () => {
+  isLoaded.value = false
+  isPlaying.value = false
+  player.value!.src = currentTrack.value.path
+  player.value!.addEventListener(
+    'canplay',
+    () => {
+      isLoaded.value = true
+    },
+    { once: true }
+  )
+})
 
 async function play() {
-  isPlaying.value = false
-  await load()
   player.value!.play()
   isPlaying.value = true
 }
@@ -54,16 +51,14 @@ function playAgain() {
 }
 
 function nextTrack() {
-  isLoaded.value = false
   currentIndex.value = (currentIndex.value + 1) % tracks.length
-  trackRefs.value[currentIndex.value].scrollIntoView({ block: 'center' })
+  currentTrackRef.value.scrollIntoView({ block: 'center' })
   play()
 }
 
 function prevTrack() {
-  isLoaded.value = false
   currentIndex.value = (currentIndex.value - 1 + tracks.length) % tracks.length
-  trackRefs.value[currentIndex.value].scrollIntoView({ block: 'center' })
+  currentTrackRef.value.scrollIntoView({ block: 'center' })
   play()
 }
 
