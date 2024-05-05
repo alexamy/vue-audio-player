@@ -252,7 +252,6 @@ onUnmounted(() => {
   padding: 4px;
   padding-right: 0;
   white-space: nowrap;
-  overflow: hidden;
 }
 @media (hover: hover) {
   .track:hover {
