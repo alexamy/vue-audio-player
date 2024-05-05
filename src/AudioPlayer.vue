@@ -221,7 +221,7 @@ onUnmounted(() => {
   }
 }
 .sidebar {
-  min-width: 400px;
+  min-width: 450px;
   display: flex;
   flex-direction: column;
 }
@@ -251,6 +251,8 @@ onUnmounted(() => {
   padding: 0 0 0;
   padding: 4px;
   padding-right: 0;
+  white-space: nowrap;
+  overflow: hidden;
 }
 @media (hover: hover) {
   .track:hover {
@@ -312,7 +314,7 @@ onUnmounted(() => {
   background-color: var(--orange);
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 900px) {
   .center {
     display: block;
     padding-left: 10px;
@@ -322,7 +324,7 @@ onUnmounted(() => {
     display: none;
   }
   .sidebar {
-    min-width: 100px;
+    min-width: 350px;
     width: 100%;
   }
   .tracks,
