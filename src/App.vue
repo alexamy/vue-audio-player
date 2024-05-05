@@ -1,16 +1,24 @@
 <script setup lang="ts">
-import { computed, onMounted, onUnmounted, ref } from 'vue'
-import { tracks } from './tracks'
+import { computed, onMounted, onUnmounted, ref, toRefs } from 'vue'
+
+const props = defineProps<{
+  tracks: Array<{
+    name: string
+    path: string
+  }>
+}>()
+
+const { tracks } = toRefs(props)
 
 const currentIndex = ref(0)
-const currentTrack = computed(() => tracks[currentIndex.value])
+const currentTrack = computed(() => tracks.value[currentIndex.value])
 const progress = ref(0)
 
 const isLoaded = ref(false)
 const isPlaying = ref(false)
 const isRepeatOne = ref(false)
 
-const names = computed(() => tracks.map((track) => track.name))
+const names = computed(() => tracks.value.map((track) => track.name))
 const player = ref<HTMLAudioElement | null>(null)
 const trackRefs = ref<HTMLElement[]>([])
 
@@ -49,14 +57,14 @@ function playAgain() {
 
 function nextTrack() {
   isLoaded.value = false
-  currentIndex.value = (currentIndex.value + 1) % tracks.length
+  currentIndex.value = (currentIndex.value + 1) % tracks.value.length
   trackRefs.value[currentIndex.value].scrollIntoView({ block: 'center' })
   play()
 }
 
 function prevTrack() {
   isLoaded.value = false
-  currentIndex.value = (currentIndex.value - 1 + tracks.length) % tracks.length
+  currentIndex.value = (currentIndex.value - 1 + tracks.value.length) % tracks.value.length
   trackRefs.value[currentIndex.value].scrollIntoView({ block: 'center' })
   play()
 }
