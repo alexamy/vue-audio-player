@@ -117,19 +117,19 @@ onUnmounted(() => {
  x Use async JSON for tracks
  x Add mobile version
  x Add svg icons for controls
- * Fix mobile version layout on build
- * Extract headless player
+ x Fix mobile version layout on build
  *
+ * Extract headless player
+ * Save / restore state on page reload
+ * Add loading spinner when track is loading
+ * Missing track indicator
+ *
+ * Scale vinyl cover
  * Merge play and pause into one button
  * Dont select track on page load
  * Play first track when no track is selected on play click
- * Scale vinyl cover
- *
- * Save / restore state on page reload
  * Shuffle tracks
  * Volume bar
- * Missing track indicator
- * Add loading spinner when track is loading
  */
 </script>
 
