@@ -125,6 +125,7 @@ onUnmounted(() => {
  * Merge play and pause into one button
  * Dont select track on page load
  * Play first track when no track is selected on play click
+ * Scale vinyl cover
  *
  * Save / restore state on page reload
  * Shuffle tracks
