@@ -6,7 +6,7 @@ interface Track {
   path: string
 }
 
-const tracks: Track[] = await fetch('/tracks.json').then((res) => res.json())
+const tracks: Track[] = await fetch('tracks.json').then((res) => res.json())
 
 const currentIndex = ref(0)
 const currentTrack = computed(() => tracks[currentIndex.value])
