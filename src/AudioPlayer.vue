@@ -313,7 +313,7 @@ onUnmounted(() => {
   background-color: var(--orange);
 }
 
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 768px) {
   .center {
     display: block;
     padding-left: 10px;
